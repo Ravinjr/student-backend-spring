@@ -16,7 +16,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**") // Allow CORS for all /api endpoints
-//                        .allowedOrigins("http://localhost:4200") // Your React frontend
+                        .allowedOrigins("http://localhost:4200") // Your React frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .exposedHeaders("Authorization")
