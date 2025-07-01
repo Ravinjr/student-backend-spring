@@ -2,7 +2,7 @@ package edu.icet.util.mappers;
 
 import edu.icet.dto.CourseDTO;
 import edu.icet.dto.CourseSaveRequestDTO;
-import edu.icet.dto.CourseUpdateRequestDTO;
+import edu.icet.dto.requestdto.CourseUpdateRequestDTO;
 import edu.icet.entity.Course;
 import org.mapstruct.Mapper;
 

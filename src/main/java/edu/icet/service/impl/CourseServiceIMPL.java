@@ -2,14 +2,13 @@ package edu.icet.service.impl;
 
 import edu.icet.dto.CourseDTO;
 import edu.icet.dto.CourseSaveRequestDTO;
-import edu.icet.dto.CourseUpdateRequestDTO;
+import edu.icet.dto.requestdto.CourseUpdateRequestDTO;
 import edu.icet.entity.Course;
 import edu.icet.exception.NotFoundException;
 import edu.icet.repository.CourseRepository;
 import edu.icet.service.CourseService;
 import edu.icet.util.mappers.CourseMapper;
 import jakarta.persistence.EntityExistsException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

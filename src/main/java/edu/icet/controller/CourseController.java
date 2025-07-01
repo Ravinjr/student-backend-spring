@@ -2,7 +2,7 @@ package edu.icet.controller;
 
 import edu.icet.dto.CourseDTO;
 import edu.icet.dto.CourseSaveRequestDTO;
-import edu.icet.dto.CourseUpdateRequestDTO;
+import edu.icet.dto.requestdto.CourseUpdateRequestDTO;
 import edu.icet.service.CourseService;
 import edu.icet.util.StandardResponse;
 import org.springframework.http.HttpStatus;

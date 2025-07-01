@@ -1,4 +1,4 @@
-package edu.icet.dto;
+package edu.icet.dto.responsedto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

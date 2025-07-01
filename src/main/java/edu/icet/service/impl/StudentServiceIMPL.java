@@ -2,7 +2,7 @@ package edu.icet.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.icet.dto.StudentDTO;
-import edu.icet.dto.response.DogResponse;
+import edu.icet.dto.responsedto.DogResponse;
 import edu.icet.entity.Student;
 import edu.icet.repository.StudentNativeRepository;
 import edu.icet.repository.StudentRepository;

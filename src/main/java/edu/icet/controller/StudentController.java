@@ -2,16 +2,14 @@ package edu.icet.controller;
 
 import edu.icet.common.AuditTime;
 import edu.icet.dto.StudentDTO;
-import edu.icet.dto.deleteResponse;
-import edu.icet.dto.response.DogResponse;
+import edu.icet.dto.responsedto.deleteResponse;
+import edu.icet.dto.responsedto.DogResponse;
 import edu.icet.entity.Student;
 import edu.icet.service.StudentService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @RestController

@@ -6,3 +6,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+security:
+  jwt:
+    secret: "435f90f7e285217790ffcb396a377d567c73f8498b65bd616519a56b101212101e68f95d11a7ff8d73637f3ae22d9781"
+
+#  jcg:
+#    jwt:
+#      secret: "435f90f7e285217790ffcb396a377d567c73f8498b65bd616519a56b101212101e68f95d11a7ff8d73637f3ae22d9781"

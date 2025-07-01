@@ -2,7 +2,7 @@ package edu.icet.service;
 
 import edu.icet.dto.CourseDTO;
 import edu.icet.dto.CourseSaveRequestDTO;
-import edu.icet.dto.CourseUpdateRequestDTO;
+import edu.icet.dto.requestdto.CourseUpdateRequestDTO;
 
 import java.util.List;
 
