@@ -5,13 +5,9 @@ import edu.icet.entity.SystemUser;
 import edu.icet.exception.NotFoundException;
 import edu.icet.repository.UserRepository;
 import edu.icet.service.UserService;
-//import edu.icet.util.JwtUtil;
-import jakarta.persistence.EntityExistsException;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,37 +18,18 @@ public class UserServiceIMPL implements UserService {
 //    private final AuthenticationManager authenticationManager;
 //    private final JwtUtil jwtUtil;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
+
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
-    public UserServiceIMPL(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserServiceIMPL(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
 //        this.authenticationManager = authenticationManager;
 //        this.jwtUtil = jwtUtil;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-
-//    @Override
-//    public String signUp(UserDTO userDTO) {
-//        userDTO.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
-//        try{
-//            if(userRepository.existsById(userDTO.getId())) {
-//                throw new EntityExistsException("User already exists");
-//            }
-////            UserInfo user = modelMapper.map(userDTO, UserInfo.class);
-////            userRepository.save(modelMapper.map(userDTO, UserInfo.class));
-////            return user.getUsername();
-//            SystemUser systemUser = modelMapper.map(userDTO, SystemUser.class);
-//            userRepository.save(systemUser);
-////            System.out.println("..............sapumal............");
-//            return systemUser.getUsername();
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//            throw new RuntimeException("Error while signing up");
-//        }
-//
-//    }
 
     @Override
     public String signIn(UserDTO userDTO) {
@@ -74,33 +51,30 @@ public class UserServiceIMPL implements UserService {
             e.printStackTrace();
             throw new RuntimeException("Error while signing in");
         }
-//        try{
-//            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(),
-//                    authRequestDTO.getPassword()));
-//            if (authentication.isAuthenticated()) {
-//                return jwtUtil.generateToken(authRequestDTO.getUsername());
-//            }
-////            else {
-////                return "fail";
-////            }
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("Login failed: " + e.getMessage());
-//        }
 
     }
 
-//    public String verify(UserDTO userDTO) {
-//
-//
-//        Authentication authentication=authenticationManager.
-//                authenticate(new UsernamePasswordAuthenticationToken(userDTO.getEmail(),userDTO.getPassword()));
-//
-//        if(authentication.isAuthenticated()){
-//            return jwtUtil.generateToken(userDTO.getUsername());
-//        }
-//        return "not success";
-//    }
+    @Override
+    public SystemUser save(UserDTO userDTO) {
+        try{
+            Optional<SystemUser> user = userRepository.findByUsername(userDTO.getUsername());
+            if(user.isPresent()) {
+                throw new NotFoundException("Username already exists");
+            }
+            else {
+                userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+                SystemUser systemUser = modelMapper.map(userDTO, SystemUser.class);
+                userRepository.save(systemUser);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Error while Signup user");
+        }
+       return modelMapper.map(userDTO, SystemUser.class);
+    }
+//    systemUser.setPassword(passwordEncoder.encode(systemUser.getPassword()));
+//    SystemUser user = userRepository.save(systemUser);
 
 }
 
