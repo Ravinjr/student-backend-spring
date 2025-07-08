@@ -39,10 +39,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-//                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/home","/signup","/sign-in","/authenticate").permitAll();
-//                    registry.requestMatchers("/api/v1/student/**").hasRole("ADMIN");
                     registry.requestMatchers("/admin/**").hasRole(ADMIN);
                     registry.requestMatchers("/user/**").hasRole(USER);
                     registry.anyRequest().authenticated();

@@ -60,9 +60,9 @@ public class ContentController {
 
     @PostMapping("/sign-in")
     public ResponseEntity<StandardResponse> signInUser(@RequestBody UserDTO userDTO){
-        String user = userService.signIn(userDTO);
+        String token = userService.signIn(userDTO);
         return new ResponseEntity<StandardResponse>(
-                new StandardResponse(200,"Success",user),
+                new StandardResponse(200,"Success",token),
                 HttpStatus.ACCEPTED
         );
     }
